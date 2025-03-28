@@ -35,7 +35,7 @@ for episode in range(episodes):
     print(f"Episode {episode + 1}, Reward: {total_reward:.2f}, Final balance: {train_env.balance:.2f}")
 
 # 3. Тестуємо на test_df (2023)
-test_env = TradingEnv(test_df)
+test_env = TradingEnv(test_df, window_size=10)
 state = test_env.reset()
 done = False
 test_reward = 0

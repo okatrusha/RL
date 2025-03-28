@@ -37,7 +37,7 @@ class TradingEnv:
         r = self.data["Returns"].iloc[self.current_step - self.window_size:self.current_step].values
         a = self.data["AbsChange"].iloc[self.current_step - self.window_size:self.current_step].values
         weekday = self.data["Weekday"].iloc[self.current_step]
-        return tuple(r.round(2)) + tuple(a.round(1)) + (self.position, weekday)
+        return tuple(r.round(1)) + tuple(a.round(0)) + (self.position, weekday)
 
     def step(self, action):
         price = self.data["Price"].iloc[self.current_step]
