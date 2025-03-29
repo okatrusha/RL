@@ -22,7 +22,7 @@ class DQN(nn.Module):
 
 class DQNAgent:
     def __init__(self, state_dim, action_dim, device='cpu',
-                 gamma=0.8, lr=1e-3, epsilon=1.0, epsilon_min=0.01, epsilon_decay=0.995,
+                 gamma=0.8, lr=1e-3, epsilon=1.0, epsilon_min=0.05, epsilon_decay=0.98,
                  memory_size=50000, batch_size=128):
 
         self.device = torch.device(device)

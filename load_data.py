@@ -15,6 +15,9 @@ def load_snp_data(csv_path):
     df["Price"] = df["Close"]
     df["Returns"] = df["Price"].pct_change().fillna(0)
     df["AbsChange"] = df["Price"].diff().fillna(0)
+    df["dHigh"] = df["High"] - df["Price"]
+    df["dLow"] = df["Price"] - df["Low"]
+    df["dHigh"] = df["Price"].diff().fillna(0)
     df["Weekday"] = df["Date"].apply(lambda x: x.weekday())
 
     print(df.tail())

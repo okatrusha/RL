@@ -36,8 +36,11 @@ class TradingEnv:
     def _get_state(self):
         r = self.data["Returns"].iloc[self.current_step - self.window_size:self.current_step].values
         a = self.data["AbsChange"].iloc[self.current_step - self.window_size:self.current_step].values
+        dh = self.data["dHigh"].iloc[self.current_step]
+        dl = self.data["dLow"].iloc[self.current_step]
+
         weekday = self.data["Weekday"].iloc[self.current_step]
-        return tuple(r.round(1)) + tuple(a.round(0)) + (self.position, weekday)
+        return tuple(r.round(1)) + tuple(a.round(0)) + (self.position, weekday) + (dh.round(0), dl.round(0))
 
     def step(self, action):
         price = self.data["Price"].iloc[self.current_step]

@@ -12,8 +12,8 @@ train_df = df[(df["Date"] >= "1990-01-01") & (df["Date"] < "2023-01-01")].reset_
 test_df = df[df["Date"] >= "2023-01-01"].reset_index(drop=True)
 
 # Initialize environment and agent
-train_env = TradingEnv(train_df)
-test_env = TradingEnv(test_df)
+train_env = TradingEnv(train_df, window_size=30)
+test_env = TradingEnv(test_df, window_size=30)
 
 state_dim = len(train_env.reset())
 action_dim = 3  # Hold, Buy, Sell
@@ -23,7 +23,7 @@ agent = DQNAgent(state_dim, action_dim, device=device)
 
 print(device)
 # Training loop
-num_episodes = 1000
+num_episodes = 500
 train_rewards = []
 
 target_update_freq = 10
